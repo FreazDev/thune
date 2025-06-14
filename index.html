@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Brevet Révisions - Fiches PDF Gratuites</title>
+    
+    <!-- Step 1: Include Adcash library -->
+    <script id="aclib" type="text/javascript" src="//acscdn.com/script/aclib.js"></script>
+    
     <style>
         * {
             margin: 0;
@@ -208,6 +212,15 @@
 
         .close-modal:hover {
             background: #5a67d8;
+        }
+
+        .ad-zone {
+            transition: all 0.3s ease;
+        }
+
+        .ad-zone:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
         }
 
         @media (max-width: 768px) {
@@ -468,7 +481,7 @@
         </div>
     </div>
 
-    <!-- Script publicitaire Autotag -->
+    <!-- Step 2: Put the tag script on the page -->
     <script type="text/javascript">
         aclib.runAutoTag({
             zoneId: 'vzkvnwlgum',
