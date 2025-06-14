@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brevet Révisions - Fiches PDF Gratuites</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            color: #2d3748;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .header p {
+            font-size: 1.2em;
+            color: #4a5568;
+            margin-bottom: 20px;
+        }
+
+        .ad-banner {
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            color: white;
+            padding: 15px;
+            text-align: center;
+            border-radius: 10px;
+            margin: 20px 0;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+            100% { transform: scale(1); }
+        }
+
+        .subjects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .subject-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .subject-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .subject-icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .subject-title {
+            font-size: 1.4em;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #2d3748;
+            text-align: center;
+        }
+
+        .fiches-list {
+            list-style: none;
+        }
+
+        .fiche-item {
+            background: linear-gradient(135deg, #f7fafc, #edf2f7);
+            margin: 8px 0;
+            padding: 12px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .fiche-item:hover {
+            background: linear-gradient(135deg, #e2e8f0, #cbd5e0);
+            transform: translateX(5px);
+        }
+
+        .fiche-title {
+            font-weight: 500;
+            color: #4a5568;
+        }
+
+        .pdf-icon {
+            color: #e53e3e;
+            font-size: 1.2em;
+        }
+
+        .stats {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            margin: 30px 0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+        }
+
+        .stat-item {
+            padding: 15px;
+        }
+
+        .stat-number {
+            font-size: 2em;
+            font-weight: bold;
+            color: #667eea;
+            display: block;
+        }
+
+        .stat-label {
+            color: #4a5568;
+            font-size: 0.9em;
+        }
+
+        .footer {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 30px;
+            color: #4a5568;
+        }
+
+        .download-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .close-modal {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 15px;
+            font-size: 1em;
+        }
+
+        .close-modal:hover {
+            background: #5a67d8;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .subjects-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .container {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎓 Brevet Révisions</h1>
+            <p>Toutes tes fiches de révision pour réussir le brevet !</p>
+            <div class="ad-banner">
+                📢 PUBLICITÉ - Découvrez nos partenaires pour encore plus de ressources !
+            </div>
+        </div>
+
+        <div class="stats">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span class="stat-number">156</span>
+                    <span class="stat-label">Fiches PDF</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">8</span>
+                    <span class="stat-label">Matières</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">12,453</span>
+                    <span class="stat-label">Téléchargements</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">100%</span>
+                    <span class="stat-label">Gratuit</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="subjects-grid">
+            <div class="subject-card">
+                <div class="subject-icon">📝</div>
+                <div class="subject-title">Français</div>
+                <ul class="fiches-list">
+                    <li class="fiche-item" onclick="downloadFiche('Figures de style et procédés littéraires')">
+                        <span class="fiche-title">Figures de style et procédés littéraires</span>
+                        <span class="pdf-icon">📄</span>
+                    </li>
+                    <li class="fiche-item" onclick="downloadFiche('Méthodologie dissertation')">
+                        <span class="fiche-title">Méthodologie dissertation</span>
+                        <span class="pdf-icon">📄</span>
+                    </li>
+                    <li class="fiche-item" onclick="downloadFiche('Grammaire et conjugaison')">
+                        <span class="fiche-title">Grammaire et conjugaison</span>
+                        <span class="pdf-icon">📄</span>
+                    </li>
+                    <li class="fiche-item" onclick="downloadFiche('Analyse de texte poétique')">
+                        <span class="fiche-title">Analyse de texte poétique</span>
+                        <span class="pdf-icon">📄</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="subject-card">
+                <div class="subject-icon">🔢</div>
+                <div class="subject-title">Mathématiques</div>
+                <ul class="fiches-list">
+                    <li class="fiche-item" onclick="downloadFiche('Théorème de Pythagore et Thalès')">
+                        <span class="fiche-title">Théorème de Pythagore et Thalès</span>
+                        <span class="pdf-icon">📄</span>
+                    </li>
+                    <li class="fiche-item" onclick="downloadFiche('Fonctions linéaires et affines')">
+                        <span class="fiche-title">Fonctions linéaires et affines</span>
+                        <span class="pdf-icon">📄</span>
+                    </li>
+                    <li class="fiche-item" onclick="downloadFiche('Calcul littéral et équations')">
+                        <span class="fiche-title">Calcul littéral et équations</span>
+                        <span class="pdf-icon">📄</span>
+                    </li>
+                    <li class="fiche-item" onclick="downloadFiche('Probabilités et statistiques')">
+                        <span class="fiche-title">Probabilités et statistiques</span>
+                        <span class="pdf-icon">📄</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="subject-card">
+                <div class="subject-icon">🏛️</div>
+                <div class="subject-title">Histoire</div>
+                <ul class="fiches-list">
+                    <li class="fiche-item" onclick="downloadFiche('Première Guerre mondiale')">
+                        <span class="fiche-title">Première Guerre mondiale</span>
+                        <span class="pdf-icon">📄</span>
+                    </li>
+                    <li class="fiche-item" onclick="downloadFiche('Révolution française')">
+                        <span class="fiche-title">Révolution française</span>
+                        <span class="pdf-icon">📄</span>
+                    </li>
+                    <li class="fiche-item" onclick="downloadFiche('Seconde Guerre mondiale')">
+                        <span class="fiche-title">Seconde Guerre mondiale</span>
+                        <span class="pdf-icon">📄</span>
+                    </li>
+                    <li class="fiche-item" onclick="downloadFiche('Guerre froide')">
+                        <span class="fiche-title">Guerre froide</span>
+                        <span class="pdf-icon">📄</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="subject-card">
+                <div class="subject-icon">🌍</div>
+                <div class="subject-title">Géographie</div>
+                <ul class="fiches-list">
+                    <li class="fiche-item" onclick="downloadFiche('Démographie mondiale')">
+                        <span class="fiche-title">Démographie mondiale</span>
+                        <span class="pdf-icon">📄</span>
+                    </li>
+                    <li class="fiche-item" onclick="downloadFiche('Espaces urbains')">
+                        <span class="fiche-title">Espaces urbains</span>
+                        <span class="pdf-icon">📄</span>
+                    </li>
+                    <li class="fiche-item" onclick="downloadFiche('Mondialisation')">
+                        <span class="fiche-title">Mondialisation</span>
+                        <span class="pdf-icon">📄</span>
+                    </li>
+                    <li class="fiche-item" onclick="downloadFiche('Développement durable')">
+                        <span class="fiche-title">Développement durable</span>
+                        <span class="pdf-icon">📄</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="subject-card">
+                <div class="subject-icon">⚖️</div>
+                <div class="subject-title">EMC</div>
+                <ul class="fiches-list">
+                    <li class="fiche-item" onclick="downloadFiche('Droits et devoirs du citoyen')">
+                        <span class="fiche-title">Droits et devoirs du citoyen</span>
+                        <span class="pdf-icon">📄</span>
+                    </li>
+                    <li class="fiche-item" onclick="downloadFiche('Constitution française')">
+                        <span class="fiche-title">Constitution française</span>
+                        <span class="pdf-icon">📄</span>
+                    </li>
+                    <li class="fiche-item" onclick="downloadFiche('Institutions européennes')">
+                        <span class="fiche-title">Institutions européennes</span>
+                        <span class="pdf-icon">📄</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="subject-card">
+                <div class="subject-icon">🧬</div>
+                <div class="subject-title">SVT</div>
+                <ul class="fiches-list">
+                    <li class="fiche-item" onclick="downloadFiche('Génétique et hérédité')">
+                        <span class="fiche-title">Génétique et hérédité</span>
+                        <span class="pdf-icon">📄</span>
+                    </li>
+                    <li class="fiche-item" onclick="downloadFiche('Système nerveux')">
+                        <span class="fiche-title">Système nerveux</span>
+                        <span class="pdf-icon">📄</span>
+                    </li>
+                    <li class="fiche-item" onclick="downloadFiche('Évolution des espèces')">
+                        <span class="fiche-title">Évolution des espèces</span>
+                        <span class="pdf-icon">📄</span>
+                    </li>
+                    <li class="fiche-item" onclick="downloadFiche('Écosystèmes')">
+                        <span class="fiche-title">Écosystèmes</span>
+                        <span class="pdf-icon">📄</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="subject-card">
+                <div class="subject-icon">⚗️</div>
+                <div class="subject-title">Physique-Chimie</div>
+                <ul class="fiches-list">
+                    <li class="fiche-item" onclick="downloadFiche('Atomes et molécules')">
+                        <span class="fiche-title">Atomes et molécules</span>
+                        <span class="pdf-icon">📄</span>
+                    </li>
+                    <li class="fiche-item" onclick="downloadFiche('Électricité')">
+                        <span class="fiche-title">Électricité</span>
+                        <span class="pdf-icon">📄</span>
+                    </li>
+                    <li class="fiche-item" onclick="downloadFiche('Mécanique')">
+                        <span class="fiche-title">Mécanique</span>
+                        <span class="pdf-icon">📄</span>
+                    </li>
+                    <li class="fiche-item" onclick="downloadFiche('Réactions chimiques')">
+                        <span class="fiche-title">Réactions chimiques</span>
+                        <span class="pdf-icon">📄</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="subject-card">
+                <div class="subject-icon">⚙️</div>
+                <div class="subject-title">Technologie</div>
+                <ul class="fiches-list">
+                    <li class="fiche-item" onclick="downloadFiche('Programmation et algorithmes')">
+                        <span class="fiche-title">Programmation et algorithmes</span>
+                        <span class="pdf-icon">📄</span>
+                    </li>
+                    <li class="fiche-item" onclick="downloadFiche('Matériaux et structures')">
+                        <span class="fiche-title">Matériaux et structures</span>
+                        <span class="pdf-icon">📄</span>
+                    </li>
+                    <li class="fiche-item" onclick="downloadFiche('Réseaux informatiques')">
+                        <span class="fiche-title">Réseaux informatiques</span>
+                        <span class="pdf-icon">📄</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="ad-banner">
+            💡 ASTUCE : Imprime tes fiches pour réviser partout ! Nos partenaires proposent des solutions d'impression économiques.
+        </div>
+
+        <div class="footer">
+            <p>© 2025 Brevet Révisions - Toutes les fiches sont gratuites et conformes au programme officiel</p>
+            <p><em>Site optimisé pour la réussite au Diplôme National du Brevet</em></p>
+        </div>
+    </div>
+
+    <div class="download-modal" id="downloadModal">
+        <div class="modal-content">
+            <h3>📥 Téléchargement en cours</h3>
+            <p id="ficheTitle">Fiche de révision</p>
+            <p>Votre fiche PDF sera disponible dans quelques secondes...</p>
+            <div class="ad-banner" style="margin: 15px 0;">
+                🎯 Pendant que vous patientez, découvrez nos cours en ligne !
+            </div>
+            <button class="close-modal" onclick="closeModal()">Fermer</button>
+        </div>
+    </div>
+
+    <script>
+        function downloadFiche(title) {
+            const modal = document.getElementById('downloadModal');
+            const ficheTitle = document.getElementById('ficheTitle');
+            
+            ficheTitle.textContent = title;
+            modal.style.display = 'flex';
+            
+            // Simuler un téléchargement
+            setTimeout(() => {
+                // Dans un vrai site, ici vous appelleriez votre API pour générer/servir le PDF
+                console.log(`Téléchargement de la fiche: ${title}`);
+                
+                // Simulation d'un téléchargement
+                const link = document.createElement('a');
+                link.href = 'data:application/pdf;base64,'; // Ici vous mettriez l'URL réelle du PDF
+                link.download = `${title.replace(/\s+/g, '_')}.pdf`;
+                // link.click(); // Décommentez pour un vrai téléchargement
+                
+                // Afficher un message de succès
+                ficheTitle.textContent = `✅ ${title} - Téléchargement terminé !`;
+            }, 2000);
+        }
+
+        function closeModal() {
+            document.getElementById('downloadModal').style.display = 'none';
+        }
+
+        // Fermer la modale en cliquant à l'extérieur
+        document.getElementById('downloadModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+
+        // Animation au scroll
+        window.addEventListener('scroll', function() {
+            const cards = document.querySelectorAll('.subject-card');
+            cards.forEach(card => {
+                const rect = card.getBoundingClientRect();
+                if (rect.top < window.innerHeight - 100) {
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }
+            });
+        });
+
+        // Initialiser l'animation
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.subject-card');
+            cards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(30px)';
+                card.style.transition = 'all 0.6s ease';
+                card.style.transitionDelay = `${index * 0.1}s`;
+            });
+            
+            // Déclencher l'animation après un court délai
+            setTimeout(() => {
+                cards.forEach(card => {
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                });
+            }, 300);
+        });
+    </script>
+</body>
+</html>
