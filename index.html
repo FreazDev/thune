@@ -434,8 +434,17 @@
             </div>
         </div>
 
+        <!-- Zone publicitaire principale -->
         <div class="ad-banner">
             💡 ASTUCE : Imprime tes fiches pour réviser partout ! Nos partenaires proposent des solutions d'impression économiques.
+        </div>
+
+        <!-- Zone publicitaire supplémentaire -->
+        <div class="ad-zone" style="background: rgba(255, 255, 255, 0.9); padding: 20px; border-radius: 15px; margin: 30px 0; text-align: center; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);">
+            <div style="color: #666; font-size: 0.9em; margin-bottom: 10px;">PUBLICITÉ</div>
+            <div id="autotag-zone" style="min-height: 100px; display: flex; align-items: center; justify-content: center; background: #f8f9fa; border-radius: 10px; border: 2px dashed #dee2e6;">
+                <span style="color: #6c757d;">Espace publicitaire - Autotag</span>
+            </div>
         </div>
 
         <div class="footer">
@@ -450,11 +459,21 @@
             <p id="ficheTitle">Fiche de révision</p>
             <p>Votre fiche PDF sera disponible dans quelques secondes...</p>
             <div class="ad-banner" style="margin: 15px 0;">
-                🎯 Pendant que vous patientez, découvrez nos cours en ligne !
+                🎯 Pendant que vous patientez, découvrez nos partenaires éducatifs !
+                <div style="margin-top: 10px; padding: 10px; background: rgba(255,255,255,0.2); border-radius: 5px; font-size: 0.9em;">
+                    Zone publicitaire premium - Autotag Active
+                </div>
             </div>
             <button class="close-modal" onclick="closeModal()">Fermer</button>
         </div>
     </div>
+
+    <!-- Script publicitaire Autotag -->
+    <script type="text/javascript">
+        aclib.runAutoTag({
+            zoneId: 'vzkvnwlgum',
+        });
+    </script>
 
     <script>
         function downloadFiche(title) {
